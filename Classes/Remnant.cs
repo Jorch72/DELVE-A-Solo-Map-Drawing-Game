@@ -4,9 +4,9 @@ using System.Reflection.Emit;
 using System.Text;
 
 namespace Delve{
-    internal class Remnant {
-        public String Name=string.Empty;
-        public Remnant(Card c,int level,int D4,int D2){ 
-        }
-    }
+ internal class Remnant{
+  public String Name=string.Empty;
+  public Remnant(Deck dck){ 
+  }
+ }
 }

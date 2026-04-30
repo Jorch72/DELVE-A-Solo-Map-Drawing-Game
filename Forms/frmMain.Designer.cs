@@ -49,13 +49,15 @@
             // 
             // txtMap
             // 
-            txtMap.Anchor=AnchorStyles.Top|AnchorStyles.Bottom|AnchorStyles.Left|AnchorStyles.Right;
+            txtMap.Anchor=AnchorStyles.Top|AnchorStyles.Bottom|AnchorStyles.Left;
+            txtMap.Font=new Font("Lucida Console",9F,FontStyle.Regular,GraphicsUnit.Point,0);
             txtMap.Location=new Point(12,114);
             txtMap.Multiline=true;
             txtMap.Name="txtMap";
             txtMap.ScrollBars=ScrollBars.Both;
             txtMap.Size=new Size(707,324);
             txtMap.TabIndex=1;
+            txtMap.WordWrap=false;
             // 
             // lblReources
             // 
@@ -97,7 +99,7 @@
             btnLeft.Name="btnLeft";
             btnLeft.Size=new Size(112,34);
             btnLeft.TabIndex=6;
-            btnLeft.Text="&Left";
+            btnLeft.Text="<< &Left";
             btnLeft.UseVisualStyleBackColor=true;
             btnLeft.Click+=btnLeft_Click;
             // 
@@ -107,8 +109,9 @@
             btnRight.Name="btnRight";
             btnRight.Size=new Size(112,34);
             btnRight.TabIndex=7;
-            btnRight.Text="&Right";
+            btnRight.Text="&Right >>";
             btnRight.UseVisualStyleBackColor=true;
+            btnRight.Click+=btnRight_Click;
             // 
             // txtLog
             // 
@@ -119,6 +122,7 @@
             txtLog.ScrollBars=ScrollBars.Both;
             txtLog.Size=new Size(293,406);
             txtLog.TabIndex=8;
+            txtLog.WordWrap=false;
             // 
             // frmMain
             // 
