@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Delve {
-    class Invention {
+namespace Delve
+{
+    internal class Invention
+    {
     }
 }

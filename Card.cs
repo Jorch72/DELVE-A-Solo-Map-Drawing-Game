@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Delve {
-    public class Card {
-        public enum Suites {
+namespace Delve
+{
+    public class Card
+    {
+        public enum Suites
+        {
             Spades = 0,
             Clubs,
             Diamonds,
@@ -15,22 +18,27 @@ namespace Delve {
             Red
         }
 
-        public int Value {
+        public int Value
+        {
             get;
             set;
         }
 
-        public Suites Suite {
+        public Suites Suite
+        {
             get;
             set;
         }
 
         //Used to get full name, also useful
         //if you want to just get the named value
-        public string NamedValue {
-            get {
+        public string NamedValue
+        {
+            get
+            {
                 string name = string.Empty;
-                switch (Value) {
+                switch (Value)
+                {
                     case (1):
                         name = "Ace";
                         break;
@@ -54,15 +62,18 @@ namespace Delve {
             }
         }
 
-        public string Name {
-            get {
+        public string Name
+        {
+            get
+            {
                 if (Value < 11) return NamedValue + " of " + Suite.ToString();
                 else if (Value < 14) return NamedValue + " of " + Suite.ToString() + " (" + Value.ToString() + ")";
                 return Suite.ToString() + " " + NamedValue;
             }
         }
 
-        public Card(int Value, Suites Suite) {
+        public Card(int Value, Suites Suite)
+        {
             this.Value = Value;
             this.Suite = Suite;
         }

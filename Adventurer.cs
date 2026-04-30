@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Delve {
+namespace Delve{
     [Serializable]
-    class Adventurer : Unit {
-        public string Description;
-        public Room.RoomType Requirement = Room.RoomType.None;
+    public class Adventurer:Unit{
+        public string Description=string.Empty;
+        public Room.RoomType Requirement=Room.RoomType.None;
 
-        public Adventurer(Card c) {
-            Requirement = Room.RoomType.Inn;
-            switch (c.Value) {
+        public Adventurer(Card c){
+            Requirement=Room.RoomType.Inn;
+            switch (c.Value){
                 case 1:
                     Name = "Drunkard";
                     STR = 5;
