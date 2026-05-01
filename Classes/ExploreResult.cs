@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Delve{
- internal class ExploreResult{
+ public class ExploreResult{
   public StringBuilder sb;
   public enum ExploreResultType{
    Resources=1,

@@ -8,7 +8,7 @@ namespace Delve{
  public class Deck{
   public List<Card> Cards=new List<Card>();
   public List<Card> Drawn=new List<Card>();
-  private readonly Random _rand=new Random();
+  public readonly Random _rand=new Random();
 
   public Deck(){
    _rand = new Random();

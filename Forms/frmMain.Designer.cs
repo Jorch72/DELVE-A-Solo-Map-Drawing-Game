@@ -35,11 +35,13 @@
             btnLeft=new Button();
             btnRight=new Button();
             txtLog=new TextBox();
+            btnBuild=new Button();
+            btnHire=new Button();
             SuspendLayout();
             // 
             // btnStart
             // 
-            btnStart.Location=new Point(12,37);
+            btnStart.Location=new Point(12,12);
             btnStart.Name="btnStart";
             btnStart.Size=new Size(112,34);
             btnStart.TabIndex=0;
@@ -95,21 +97,23 @@
             // 
             // btnLeft
             // 
-            btnLeft.Location=new Point(279,52);
+            btnLeft.Enabled=false;
+            btnLeft.Location=new Point(98,61);
             btnLeft.Name="btnLeft";
-            btnLeft.Size=new Size(112,34);
+            btnLeft.Size=new Size(155,34);
             btnLeft.TabIndex=6;
-            btnLeft.Text="<< &Left";
+            btnLeft.Text="<< Explore &Left";
             btnLeft.UseVisualStyleBackColor=true;
             btnLeft.Click+=btnLeft_Click;
             // 
             // btnRight
             // 
-            btnRight.Location=new Point(397,52);
+            btnRight.Enabled=false;
+            btnRight.Location=new Point(281,61);
             btnRight.Name="btnRight";
-            btnRight.Size=new Size(112,34);
+            btnRight.Size=new Size(155,34);
             btnRight.TabIndex=7;
-            btnRight.Text="&Right >>";
+            btnRight.Text="Explore &Right >>";
             btnRight.UseVisualStyleBackColor=true;
             btnRight.Click+=btnRight_Click;
             // 
@@ -124,11 +128,35 @@
             txtLog.TabIndex=8;
             txtLog.WordWrap=false;
             // 
+            // btnBuild
+            // 
+            btnBuild.Enabled=false;
+            btnBuild.Location=new Point(453,18);
+            btnBuild.Name="btnBuild";
+            btnBuild.Size=new Size(80,34);
+            btnBuild.TabIndex=9;
+            btnBuild.Text="&Build";
+            btnBuild.UseVisualStyleBackColor=true;
+            btnBuild.Click+=btnBuild_Click;
+            // 
+            // btnHire
+            // 
+            btnHire.Enabled=false;
+            btnHire.Location=new Point(453,61);
+            btnHire.Name="btnHire";
+            btnHire.Size=new Size(80,34);
+            btnHire.TabIndex=10;
+            btnHire.Text="&Hire";
+            btnHire.UseVisualStyleBackColor=true;
+            btnHire.Click+=btnHire_Click;
+            // 
             // frmMain
             // 
             AutoScaleDimensions=new SizeF(10F,25F);
             AutoScaleMode=AutoScaleMode.Font;
             ClientSize=new Size(1047,450);
+            Controls.Add(btnHire);
+            Controls.Add(btnBuild);
             Controls.Add(txtLog);
             Controls.Add(btnRight);
             Controls.Add(btnLeft);
@@ -141,6 +169,7 @@
             Name="frmMain";
             StartPosition=FormStartPosition.CenterScreen;
             Text="Delve";
+            Load+=frmMain_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -156,5 +185,7 @@
         private Button btnLeft;
         private Button btnRight;
         private TextBox txtLog;
+        private Button btnBuild;
+        private Button btnHire;
     }
 }

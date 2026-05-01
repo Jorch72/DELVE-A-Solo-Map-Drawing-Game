@@ -14,7 +14,8 @@ namespace Delve{
    BurrowingBeast=4,
    MonsterCourt=5,
    LargeCreature=6,
-   TrappedEvil=7
+   TrappedEvil=7,
+   Skirmishers=8
   }
   string MonsterVillage(int n){
    switch(n){
@@ -116,34 +117,43 @@ namespace Delve{
    throw new Exception("Monster not Found!");
   }
 
-  public Monster(string name,int str){
+  public Monster(string name,int str, Position p):base(UnitType.Monster,p){
    Name=name;
    STR=str;
   }
-  public Monster(MonsterType what,int size,int d4){
+  public Monster(MonsterType what,int size,int level,int d4,Position p):base(UnitType.Monster,p){
    switch(what){
     case MonsterType.MonsterVillage:
      Name=MonsterVillage(d4);
-     STR=10*size;
+     STR=10*size+5*level;
     break;
     case MonsterType.SmallCreature:
      Name=SmallCreature(d4);
+     STR=10+5*level;
     break;
     case MonsterType.Hive:
      Name=Hive(d4);
-     STR=10*size;
+     STR=10*size+5*level;
     break;
     case MonsterType.BurrowingBeast:
      Name=BurrowingBeast(d4);
+     STR=20+5*level;
     break;
     case MonsterType.MonsterCourt:
      Name=MonsterCourt(d4);
+     STR=size*20+level*5;
     break;
     case MonsterType.LargeCreature:
      Name=LargeCreature(d4);
+     STR=40+5*level;
     break;
     case MonsterType.TrappedEvil:
      Name=TrappedEvil(d4);
+    break;
+    case MonsterType.Skirmishers:
+     Name="Band of Skirmishers";
+     STR=40+5*level;
+     Power="The Skirmishers have a siege engine allowing them to immediately destroy any\r\nbarricades.";
     break;
    }
   }

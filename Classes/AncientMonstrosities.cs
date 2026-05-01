@@ -12,7 +12,7 @@ namespace Delve{
   private readonly string[] name2={"Groundshaking Beast","Glutton","Prince","Sultan","Brothers","Assassin","Dancer","Prophet","Warrior","Deliverer","Master","Brood Mother","King"};
   private readonly string[] name3={"Stone","Undying","Gore","War","Bonded","Night","Quiet","Doom","Untouchable","Spikes","Lies","Horde","Patience"};
 
-  public AncientMonstrosities(Card c1,Card c2,Card c3,int lvl){
+  public AncientMonstrosities(Card c1,Card c2,Card c3,int lvl,Position p):base(UnitType.AncientMonstrosity,p){
    STR=100;
    List<int> lst=new List<int>();
    Name=name1[c1.Value]+" "+name2[c2.Value]+" "+name3[c3.Value];
@@ -26,7 +26,7 @@ namespace Delve{
     Description+=getTrait(v)+"\r\n";
    }
   }
-  public AncientMonstrosities(Card c,int lvl){
+  public AncientMonstrosities(Card c,int lvl,Position p):base(UnitType.AncientMonstrosity,p){
    STR=25;
    STR+=lvl*5;
    Name=name1[c.Value];

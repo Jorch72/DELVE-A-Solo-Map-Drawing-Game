@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Delve{
- internal class Magic{
+ public class Magic{
   public string Name=string.Empty;
   public string Description=string.Empty;
   public int size=0;
@@ -21,16 +21,16 @@ namespace Delve{
    switch(c.Value){
     case 1:
      Name="Passage to the Deep";
-     Description="A magical portal that allows you quick access to\r\nthe depths.";
+     Description="A magical portal that allows you quick access to the depths.";
      size=dck.DrawCard().Value;
     break;
     case 2:
      Name="Protective Wards";
-     Description="Magical sigils, floating lights, or another form of\r\nmagic entirely protects a room of your choice.";
+     Description="Magical sigils, floating lights, or another form of magic entirely protects a room of your choice.";
     break;
     case 3:
      Name="Living Metal";
-     Description="This spell counts as a unit, but cannot attack or be\r\nattacked on its own.";
+     Description="This spell counts as a unit, but cannot attack or be attacked on its own.";
     break;
     case 4:
      Name="Clone";
@@ -42,40 +42,40 @@ namespace Delve{
     break;
     case 6:
      Name="Fleet Forest";
-     Description="Green liquid pours from this grid space, growing thick\r\nbamboo shoots and massive trees in every grid space it touches.";
+     Description="Green liquid pours from this grid space, growing thick bamboo shoots and massive trees in every grid space it touches.";
     break;
     case 7:
      Name="Blessing";
-     Description="The gods have smiled upon you, sealing any revealed demon\r\nportals.";
+     Description="The gods have smiled upon you, sealing any revealed demon portals.";
     break;
     case 8:
      Name="Siren Song";
-     Description="A magical instrument that draws enemies to it. Choose a\r\nroom to place the Siren Song in: enemies will try to reach this room\r\ninstead of your Entrance.\r\nIf an enemy reaches this room, the siren song is destroyed.";
+     Description="A magical instrument that draws enemies to it. Choose a room to place the Siren Song in: enemies will try to reach this room instead of your Entrance. If an enemy reaches this room, the siren song is destroyed.";
     break;
     case 9:
      Name="Nurse's Sigil";
-     Description="Red heart engravings surrounded by floating lights.\r\nChoose a grid space. Units and Troops that move through this space are\r\nreturned to full STR.";
+     Description="Red heart engravings surrounded by floating lights. Choose a grid space. Units and Troops that move through this space are returned to full STR.";
     break;
     case 10:
      Name="Gills";
-     Description="A blessing, though from what source, you do not know. Dwarves\r\nare now unaffected by liquids (excluding lava).";
+     Description="A blessing, though from what source, you do not know. Dwarves are now unaffected by liquids (excluding lava).";
     break;
     case 11:
      Name="Valkyria";
-     Description="Ethereal dwarves wander the halls of your hold, attending to\r\nthe sick and dying. Hospital rooms no longer need adjacency, but are\r\nstill limited to 1 Troop per combat.";
+     Description="Ethereal dwarves wander the halls of your hold, attending to the sick and dying. Hospital rooms no longer need adjacency, but are still limited to 1 Troop per combat.";
     break;
     case 12:
      Name="Hudrak's Chains";
-     Description="Choose a room. If an Ancient Monstrosity enters the\r\nchosen room, it is permanently trapped by Hudrak’s Chains.\r\nOnce one is trapped, dwarves can no longer pass through this room.";
+     Description="Choose a room. If an Ancient Monstrosity enters the chosen room, it is permanently trapped by Hudrak’s Chains. Once one is trapped, dwarves can no longer pass through this room.";
     break;
     case 13:
      Name="Charming Colours";
-     Description="A living spell that will make friends of your\r\nenemies. Charming Colours moves as though it were a unit, and when it\r\nreaches a grid space with an enemy, you gain control of it, and may\r\ntreat it like one of your own units. Cannot affect Ancient Monstrosities.\r\nCharming Colours disappears once an enemy has been charmed.";
+     Description="A living spell that will make friends of your enemies. Charming Colours moves as though it were a unit, and when it reaches a grid space with an enemy, you gain control of it, and may treat it like one of your own units. Cannot affect Ancient Monstrosities. Charming Colours disappears once an enemy has been charmed.";
     break;
    }
   }
 
-  private void BadMagic(Deck dck,int lvl){
+  private void BadMagic(Deck dck,int lvl,Position p){
    Card c=dck.DrawCard();
    switch(c.Value){
     case 1:
@@ -100,7 +100,7 @@ namespace Delve{
     break;
     case 6:
      Name = "Circus of Chaos";
-     Description ="A Circus appears in the nearest empty grid space.\r\nThis acts like a Demon Portal (9♠), except it spawns Creepy Clowns\r\nwith 30 STR instead.";
+     Description ="A Circus appears in the nearest empty grid space. This acts like a Demon Portal (9♠), except it spawns Creepy Clowns with 30 STR instead.";
     break;
     case 7:
      Name = "Worm";
@@ -132,20 +132,16 @@ namespace Delve{
     case 13:
      Name="Monstrous Form";
      Description="Spawn an Ancient Monstrosity with only 25 STR.\r\nDraw only once for a single trait.";
-     ancientMonstrosity=new AncientMonstrosities(dck.DrawCard(),lvl);
+     ancientMonstrosity=new AncientMonstrosities(dck.DrawCard(),lvl,p);
     break;
    }
   }
 
-  public Magic(Deck dck,bool GoodMagic,int level){
-   switch(GoodMagic){
-    case true:
-     this.GoodMagic(dck);
-    break;
-    default:
-     BadMagic(dck,level);
-    break;
-   }
+  public Magic(Deck dck,int level,Position p){
+   BadMagic(dck,level,p);
+  }
+  public Magic(Deck dck,int level){
+   GoodMagic(dck);
   }
  }
 }
