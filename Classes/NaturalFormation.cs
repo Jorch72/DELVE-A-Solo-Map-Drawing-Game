@@ -4,19 +4,19 @@ using System.Reflection.Emit;
 using System.Text;
 
 namespace Delve{
- public class NaturalFormation:Room{
+ public class NaturalFormation:DelveRoom{
   public int size=0;
   public Monster? monster=null;
   public Magic? magic=null;
   public Wyrd? wyrd=null;
-  public NaturalFormation(int level,Deck dck,Position p):base(RoomType.None,p){
+  public NaturalFormation(int level,Card c,Deck dck,Position p):base(RoomType.None,p){
    size=1;
-   switch(dck.DrawCard().Value){
+   switch(c.Value){
     case 1:
      if(level<5){
       Name="Underground Forest";
       Type=RoomType.UndergroundForest;
-       Description="Cut down for a free room, or keep for 2♥ per turn.";
+      Description="Cut down for a free room, or keep for 2♥ per turn.";
      }else{      
       wyrd=new Wyrd(dck,level,p);
       Type=wyrd.Type;

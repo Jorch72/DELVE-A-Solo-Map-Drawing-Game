@@ -33,7 +33,7 @@ namespace Delve{
    lab.Location=new Point(330,y);
    y=30;
    Controls.Add(lab);
-   Unit.Catalogue.ForEach(u=>{
+   DelveUnit.Catalogue.ForEach(u=>{
     rad=new RadioButton();
     rad.AutoSize=true;
     rad.Text=u.Name;

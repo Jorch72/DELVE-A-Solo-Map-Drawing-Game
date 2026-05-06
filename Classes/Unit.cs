@@ -7,59 +7,78 @@ namespace Delve{
  public class Unit{
   public UnitType Type=UnitType.None;
   public UnitStatus Status=UnitStatus.None;
+  public Abilities UnitAbilities=Abilities.None;
   public Position? Pos=null;
   public string Name=string.Empty;
   public int STR=0;
-  public int Quantity=0;
+  public int Quantity=1;
   public int Cost=0;
+  public int Honor=0;
   public string Power=string.Empty;
 
+  [Flags]  
+  public enum Abilities{
+   None=0,
+   Ranged1=1<<0,
+   Ranged2=1<<1,
+   Ranged3=1<<2,
+   Shield=1<<3,
+   Climb =1<<4,
+   Ethereal=1<<5,
+   Fly=1<<6,
+   Drain=1<<7,
+   Element=1<<8,
+   Living=1<<9,
+   Poison=1<<10,
+   Slow=1<<11,
+   Swarm=1<<12,
+   FireVulnerable=1<<13,
+   Fast=1<<14,
+   InmuneLiquidGas=1<<15,
+   FireOnce=1<<16,
+   Revive=1<<17,
+   MovesTowardsEnemy=1<<18,
+   TravelWallFloors=1<<19,
+   CreateBarricade=1<<20
+  }
   public enum UnitStatus{
-   None,Unavailable,Available,Idle,Active,Moving,Hostile,InCombat,Attacking,Attacked,Defeated,Dead
+   None,Unavailable,Available,Idle,Active,Moving,Neutral,Hostile,InCombat,Attacking,Attacked,Defeated,Dead
   }
   public enum UnitType{
-   None,Soldier,Gunner,Hound,Cleric,Mage,Prisoner,Alchemist,Golem,Cannon,SkullDwarf,AdorablePuppy,YoungCreature,MolePeople,Adventurer,AncientMonstrosity,Monster,Remnant,Explorer
+   None,Soldier,Gunner,Hound,Cleric,Mage,Prisoner,Alchemist,Golem,Cannon,SkullDwarf,AdorablePuppy,
+   YoungCreature,MolePeople,Adventurer,AncientMonstrosity,Monster,Remnant,The_EXplorer,
+   //Biomes Units
+   //Root Biome
+   Root_Golem,Rootkeeper,Elven_Archer,Elven_Acrobat,
+   //Ant Colony
+   Soldier_Ant,Flying_Ant,Spitter_Ant,Worker_Ant,
+   //Lava Caverns
+   Salamander,Magma_Miner,
+   //Foul Temple
+   Demon,Demonologist,Blood_Mage,Vengeful_Captives,
+   //Dark Sea
+   Submarine,Mariner,
+   //Buried Jungle
+   The_Boulder,Darter,Dinosaur,
+   //Crystal Caves
+   Crystal_Soldier,
+   //Glacial Abyss
+   Primitive_Dwarves,Explorer,
+   //Rising Dungeon
+   Minion,Otherworldly_Ally,
+   //The Wyrd
+   Marine,
+   //The Underworld
+   Ghost,
+   //Ancient Workshop
+   Mechanical_Pawn,Mechanical_Shield_Bearer,
+   //Fallen Hold
+   Wolf_Cannon,Ancient_Mage,
+   //Hall of the Gods
+   Valkyrie,Godling,Fallen_Hero
   }
-  public static readonly List<Unit>Catalogue=new(){
-   new Unit(UnitType.Soldier,       "Soldier",        5, 5,string.Empty),
-   new Unit(UnitType.Gunner,        "Gunner",         3, 5,"Ranged"),
-   new Unit(UnitType.Hound,         "Hound",          3, 5,"Moves 2 spaces per round."),
-   new Unit(UnitType.Cleric,        "Cleric",         1, 8,"Shields adjacent units (5 STR per Cleric)."),
-   new Unit(UnitType.Mage,          "Mage",           4, 7,"Ranged"),
-   new Unit(UnitType.Prisoner,      "Prisoner",       1,-1,"Hostile to both sides."),
-   new Unit(UnitType.Alchemist,     "Alchemist",      2, 8,string.Empty),
-   new Unit(UnitType.Golem,         "Golem",          7,15,"Immune to liquid and gas. Available once a Golem Forge is claimed",UnitStatus.Unavailable),
-   new Unit(UnitType.Cannon,        "Cannon",        30,30,"Ranged. Can fire once per combat."),
-   new Unit(UnitType.SkullDwarf,    "Skull Dwarf",    1, 5,"On defeat, roll 1D4: 3+ revive after combat."),
-   new Unit(UnitType.AdorablePuppy, "Adorable Puppy", 1,-1,"Spawns from the Wolf Rune.\r\nMoves towards nearest enemy.\r\nYour units in the same grid space as the Adorable Puppy have double STR.",UnitStatus.Unavailable),
-   new Unit(UnitType.YoungCreature, "Young Creature", 0,-1,"When Beats are bred.",UnitStatus.Unavailable),
-   new Unit(UnitType.MolePeople,    "Mole People",    7,10,"Can travel through walls and floors.\r\nAvailable once you find the village of mole people",UnitStatus.Unavailable)
-  };
   public int TotSTR{
    get {return STR*Quantity;} 
-  }
-  public Unit(UnitType type,Position p){
-   Type=type;
-   Status=UnitStatus.Idle;
-   Pos=p;
-   if(Type==UnitType.Explorer)Name="X";
-   else if(Type>UnitType.None && Type<UnitType.Adventurer){
-    Name=Catalogue[(int)type-1].Name;
-    STR=Catalogue[(int)type-1].STR;
-   }
-  }
-  public Unit(UnitType type,int quantity,Position p){ 
-   Type=type;
-   Name=Catalogue[(int)type-1].Name;
-   STR=Catalogue[(int)type-1].STR;
-   Quantity=quantity;
-   Pos=p;
-  }
-  public Unit(UnitType type,string name,int strength,int cost,string power,UnitStatus status){ 
-   Type=type;Name=name;STR=strength;Cost=cost;Power=power;Status=status;
-  }
-  public Unit(UnitType type,string name,int strength,int cost,string power){ 
-   Type=type;Name=name;STR=strength;Cost=cost;Power=power;Status=UnitStatus.Available;
   }
   public string Draw(){
    return new string('☺',Quantity);

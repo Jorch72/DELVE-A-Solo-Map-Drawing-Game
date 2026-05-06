@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Delve{
- public class Wyrd:Room{
+ public class Wyrd:DelveRoom{
   public int Size=1;
   public Monster? monster=null;
   public LegendaryFind? legendaryFind=null;

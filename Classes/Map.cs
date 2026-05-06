@@ -12,13 +12,19 @@ namespace Delve{
  [Serializable]
  public class Map{
   List<Room> maprow=new List<Room>();
-
   public Map(){
-   Room r=new Room(Room.RoomType.Entrance,new Position(0,1));
+   DelveRoom r=new DelveRoom(DelveRoom.RoomType.Entrance,new Position(0,1));
    maprow.Add(r);
   }
-  public Room addRoom(Room.RoomType T,Direction direction,Position p){
-   Room r=new Room(T,p);
+  public List<Room> ContainsRoom(DelveRoom.RoomType type){
+   List<Room> lst=new List<Room>();
+   foreach(DelveRoom r in maprow){
+    if(r.Type==type)lst.Add(r);
+   }
+   return lst;
+  }
+  public DelveRoom addRoom(DelveRoom.RoomType T,Direction direction,Position p){
+   DelveRoom r=new DelveRoom(T,p);
    switch(direction){
     case Direction.Right:
      r.Pos.x=p.x+1;
@@ -35,31 +41,29 @@ namespace Delve{
    }
    return r;
   }
-
   public int GetRoomCount(){
    return maprow.Count;
   }
-  public int GetRoomCount(Room.RoomType type){
+  public int GetRoomCount(DelveRoom.RoomType type){
    int i=0;
-   foreach(Room room in maprow)if(room.Type==type)i++;
+   foreach(DelveRoom room in maprow)if(room.Type==type)i++;
    return i;
   }
-  public Room GetRoom(Position p){
-   foreach(Room r in maprow)if(r.Pos.x==p.x&&r.Pos.y==p.y)return r;
+  public DelveRoom GetRoom(Position p){
+   foreach(DelveRoom r in maprow)if(r.Pos.x==p.x&&r.Pos.y==p.y)return r;
    return null;
   }
   public string Draw(){
    StringBuilder sb=new StringBuilder();
-   for(int k=0;k<5;k++){
+   for(int k=0;k<=5;k++){
     if(maprow.Count<5){
      sb.Append(new string(' ',20));
     }
-    foreach(Room r in maprow)sb.Append(r.DrawRoom(k));
+    foreach(DelveRoom r in maprow)sb.Append(r.DrawRoom(k));
     sb.AppendLine();
    }
    return sb.ToString();
   }
-
   public bool Save(string filename){
    using (Stream stream=File.Open(filename, FileMode.Create)){
           //var bformatter=new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
@@ -67,7 +71,6 @@ namespace Delve{
    }
    return true;
   }
-
   public bool Load(string filename){
    using (Stream stream=File.Open(filename,FileMode.Open)){
           //var bformatter=new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();

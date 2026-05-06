@@ -13,9 +13,10 @@ namespace Delve{
  public class Adventurer:Unit{
   public AdventurerType AdventType=AdventurerType.None;
   public string Description=string.Empty;
-  public Room.RoomType Requirement=Room.RoomType.None;
-  public Adventurer(Card c,Position p):base(UnitType.Adventurer,p){
-   Requirement=Room.RoomType.Inn;
+  public DelveRoom.RoomType Requirement=DelveRoom.RoomType.None;
+  public Adventurer(Card c,Position p){
+   Pos=p;
+   Requirement=DelveRoom.RoomType.Inn;
    switch(c.Value){
     case 1:
      AdventType=AdventurerType.Drunkard;

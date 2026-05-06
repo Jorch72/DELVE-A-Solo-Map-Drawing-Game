@@ -8,11 +8,11 @@ using static Delve.Monster;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace Delve{
- public class Remnant:Room{
+ public class Remnant:DelveRoom{
   public int Size=1;
   public Monster? monster=null;
-  public Remnant(int level,Deck dck,Position p):base(RoomType.None,p){
-   switch(dck.DrawCard().Value){
+  public Remnant(int level,Card c,Deck dck,Position p):base(RoomType.None,p){
+   switch(c.Value){
     case 1:
      Size=dck.Roll1D4();
      Type=RoomType.MonsterLair;

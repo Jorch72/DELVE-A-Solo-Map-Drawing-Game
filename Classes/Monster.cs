@@ -117,11 +117,15 @@ namespace Delve{
    throw new Exception("Monster not Found!");
   }
 
-  public Monster(string name,int str, Position p):base(UnitType.Monster,p){
+  public Monster(string name,int str, Position p){
+   Type=UnitType.Monster;
+   Pos=p;
    Name=name;
    STR=str;
   }
-  public Monster(MonsterType what,int size,int level,int d4,Position p):base(UnitType.Monster,p){
+  public Monster(MonsterType what,int size,int level,int d4,Position p){
+   Type=UnitType.Monster; 
+   Pos=p;
    switch(what){
     case MonsterType.MonsterVillage:
      Name=MonsterVillage(d4);

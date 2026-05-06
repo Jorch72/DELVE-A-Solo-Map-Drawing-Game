@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Delve{
  public class Explore{
-  Deck deck;
+  public Deck deck;
   public Explore(){
    deck=new Deck();
   }
@@ -15,7 +15,7 @@ namespace Delve{
    Card c=deck.DrawCard();
    res.Log="Turn: "+turn.ToString();
    res.Log="Drew: "+c.Name;
-   while(level==1&&c.Suite==Card.Suites.Spades) {
+   while(level==1&&c.Suite==Card.Suites.Spades){
     res.Log="Draw again because of level 1";
     c=deck.DrawCard();
     res.Log="Drew: "+c.Name;
@@ -35,13 +35,13 @@ namespace Delve{
     break;
     case Card.Suites.Clubs:
      res.Type=ExploreResult.ExploreResultType.NaturalFormations;
-     res.Naturalformation=new NaturalFormation(level,deck,p);
+     res.Naturalformation=new NaturalFormation(level,c,deck,p);
      res.Log="Found natural formation: "+res.Naturalformation.Name;
      if(res.Naturalformation.monster!=null)res.Log+=" ("+res.Naturalformation.monster.Name+" ATK: "+res.Naturalformation.monster.STR+")";
     break;
     case Card.Suites.Spades:
      res.Type=ExploreResult.ExploreResultType.Remnants;
-     res.Remnants=new Remnant(level,deck,p);
+     res.Remnants=new Remnant(level,c,deck,p);
      res.Log="Found remnant: "+res.Remnants.Name;
      if(res.Remnants.monster!=null)res.Log+=" ("+res.Remnants.monster.Name+" ATK: "+res.Remnants.monster.STR+")";
     break;

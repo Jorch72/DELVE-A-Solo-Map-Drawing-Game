@@ -41,6 +41,7 @@
             btnBuild.TabIndex=1;
             btnBuild.Text="&Build";
             btnBuild.UseVisualStyleBackColor=true;
+            btnBuild.Click+=btnBuild_Click;
             // 
             // btnCancel
             // 
