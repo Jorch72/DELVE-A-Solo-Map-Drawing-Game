@@ -46,6 +46,7 @@
             gbSavedGames.TabIndex=3;
             gbSavedGames.TabStop=false;
             gbSavedGames.Text="Saved Games:";
+            gbSavedGames.Enter+=gbSavedGames_Enter;
             // 
             // btnLoad
             // 
@@ -110,7 +111,7 @@
             menuStrip1.ImageScalingSize=new Size(24,24);
             menuStrip1.Location=new Point(0,0);
             menuStrip1.Name="menuStrip1";
-            menuStrip1.Size=new Size(812,32);
+            menuStrip1.Size=new Size(812,24);
             menuStrip1.TabIndex=7;
             menuStrip1.Text="menuStrip1";
             // 
